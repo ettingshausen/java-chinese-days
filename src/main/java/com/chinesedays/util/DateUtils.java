@@ -22,7 +22,7 @@ public class DateUtils {
             }
             chineseDays = JSONUtils.parse(is, ChineseDays.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load or parse chinese-days.json", e);
         }
     }
 
