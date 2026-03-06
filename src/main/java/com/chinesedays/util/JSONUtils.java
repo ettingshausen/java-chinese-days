@@ -37,10 +37,10 @@ public class JSONUtils {
 
     public static <T> T parse(InputStream is, Class<T> clazz) {
         try {
+            // 为了获得更好的性能，ObjectMapper 应该是一个静态 final 字段并被重用。
             return new ObjectMapper().readValue(is, clazz);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to parse JSON from input stream", e);
         }
-        return null;
     }
 }
