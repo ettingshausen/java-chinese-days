@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class JSONUtils {
     public static String stringify(Object object) {
@@ -28,6 +29,15 @@ public class JSONUtils {
     public static <T> T parse(File file, Class<T> clazz) {
         try {
             return new ObjectMapper().readValue(file, clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T parse(InputStream is, Class<T> clazz) {
+        try {
+            return new ObjectMapper().readValue(is, clazz);
         } catch (IOException e) {
             e.printStackTrace();
         }
